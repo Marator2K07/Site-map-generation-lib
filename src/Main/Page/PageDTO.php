@@ -95,6 +95,11 @@ class PageDTO
         $this->changeFreq = $changeFreq;
     } 
 
+    public function getProperties(): array
+    {
+        return ['loc', 'lastmod', 'priority', 'changefreq'];
+    }
+
     public function getData(): array
     {
         return [
