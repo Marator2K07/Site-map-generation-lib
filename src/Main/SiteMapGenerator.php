@@ -12,10 +12,12 @@ class SiteMapGenerator
 {
     private $pagesDTO;
     private $fileDataBuilder;
+    private $fileName;    
 
     public function __construct(
         array $pages,
-        string $fileType
+        string $fileType,
+        string $fileName
     ) {
         // инициализируем конструктор данных файла
         switch ($fileType) {
@@ -43,6 +45,16 @@ class SiteMapGenerator
                     . ']; поддерживаемые [xml, csv, json]'
                 );
         }
+        // инициализация пути файла с предпроверкой
+        if (!str_contains($fileName, '.' . $fileType)) {
+            throw new InvalidFileTypeException(
+                'Некорректный путь до файла [' 
+                . $fileName 
+                . ']; не хватает типа файла .'
+                . $fileType
+            );
+        }
+        $this->fileName = $fileName;
         // инициализация страниц 
         foreach ($pages as $page) {
             $this->pagesDTO[] = new PageDTO($page);
@@ -51,21 +63,20 @@ class SiteMapGenerator
 
     /**
      * Генерация карты сайта в виде файла заранее указанного формата
-     * @param string $fileName путь для созданного файла карты
      * @throws BadPathFileDataBuilderException
      * @return void
      */
-    public function generate(string $fileName): void
+    public function generate(): void
     {
         // "строим" содержимое файла 
         foreach ($this->pagesDTO as $pageDTO) {
             $this->fileDataBuilder->appendPageDTO($pageDTO);
         }
         // и пытаемся сохранить
-        if(!$this->fileDataBuilder->save($fileName)) {
+        if(!$this->fileDataBuilder->save($this->fileName)) {
             throw new BadPathFileDataBuilderException(
                 'Не удалось сохранить карту страниц по указанному пути [' 
-                . $fileName 
+                . $this->fileName 
                 . ']'
             );
         }  

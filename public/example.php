@@ -18,7 +18,7 @@ $pages = [
         'changefreq' => 'weekly'
     ],
     [
-        'loc' => 'http://example.com/page2',
+        'loc' => 'https://site.net/xbox',
         'lastmod' => '2012-12-12',        
         'priority' => 0.2,
         'changefreq' => 'hourly'
@@ -35,8 +35,8 @@ $fileType = 'xml';
 //>
 
 try {
-    $siteMapGenerator = new SiteMapGenerator($pages, $fileType);
-    $siteMapGenerator->generate($filePath);
+    $siteMapGenerator = new SiteMapGenerator($pages, $fileType, $filePath);
+    $siteMapGenerator->generate();
 } catch (\Throwable $th) {
     error_log($th->getMessage() . PHP_EOL, 3, "errors.log");
 }
