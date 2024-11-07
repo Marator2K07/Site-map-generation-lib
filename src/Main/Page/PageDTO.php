@@ -8,16 +8,24 @@ use Src\Validators\DateValidator;
 use Src\Validators\SiteLocationValidator;
 use Src\Validators\UpdateFrequencyValidator;
 
-abstract class PageDTO 
+class PageDTO 
 {
     // адрес страницы
-    protected string $loc;
+    private string $loc;
     // дата изменения
-    protected DateTime $lastMod;
+    private DateTime $lastMod;
     // приоритет парсинга
-    protected float $priority;
+    private float $priority;
     // периодичность обновления
-    protected string $changeFreq;
+    private string $changeFreq;
+
+    public function __construct(array $data)
+    {
+        $this->setLoc($data["loc"]);
+        $this->setLastMod($data["lastmod"]);
+        $this->setPriority($data["priority"]);
+        $this->setChangeFreq($data["changefreq"]);
+    }
 
     public function getLoc(): string
     {
@@ -25,28 +33,32 @@ abstract class PageDTO
     }
     public function setLoc(mixed $loc)
     {
-        if (!SiteLocationValidator::validate($loc)) {
+        if ($loc === null || !SiteLocationValidator::validate($loc)) {
             throw new InvalidPageDTOException(
-                'Некорректное значение адреса страницы [' . $loc . '] при инициализации страницы.'
+                'Некорректное значение адреса страницы [' 
+                . ($loc ? $loc : "null") 
+                . '] при инициализации страницы.', 3
             );
         }
 
         $this->loc = $loc;
     }
 
-    public function getLastMod(): DateTime
+    public function getLastMod(string $format): string
     {
-        return $this->lastMod;
+        return $this->lastMod->format($format);
     }
     public function setLastMod(mixed $lastMod): void
     {
-        if (!DateValidator::validate($lastMod)) {
+        if ($lastMod === null || !DateValidator::validate($lastMod)) {
             throw new InvalidPageDTOException(
-                'Некорректное значение даты последней модификации [' . $lastMod . '] при инициализации страницы.'
+                'Некорректное значение даты последней модификации [' 
+                . ($lastMod ? $lastMod : "null")
+                . '] при инициализации страницы.'
             );
-        }
-        
-        $this->lastMod = $lastMod;
+        }        
+
+        $this->lastMod = new DateTime($lastMod);
     }
 
     public function getPriority(): float
@@ -55,9 +67,11 @@ abstract class PageDTO
     }
     public function setPriority(mixed $priority): void
     {
-        if (!is_numeric($priority)) {
+        if ($priority === null || !is_numeric($priority)) {
             throw new InvalidPageDTOException(
-                'Некорректное значение приоритета парсинга [' . $priority . '] при инициализации страницы.'
+                'Некорректное значение приоритета парсинга ['
+                . ($priority ? $priority : "null")
+                . '] при инициализации страницы.'
             );
         }
 
@@ -70,18 +84,14 @@ abstract class PageDTO
     }
     public function setChangeFreq(mixed $changeFreq): void
     {
-        if (!UpdateFrequencyValidator::validate($changeFreq)) {
+        if ($changeFreq === null || !UpdateFrequencyValidator::validate($changeFreq)) {
             throw new InvalidPageDTOException(
-                'Некорректное значение частоты обновления [' . $changeFreq . '] при инициализации страницы.'
+                'Некорректное значение частоты обновления [' 
+                . ($changeFreq ? $changeFreq : "null") 
+                . '] при инициализации страницы.'
             );
         }
 
         $this->changeFreq = $changeFreq;
     }
-
-    /**
-     * Приведение данных страницы в строку нужного формата 
-     * @return string Xml, Csv или Json представление страницы
-     */
-    abstract public function toFormatStr(): string;
 }
