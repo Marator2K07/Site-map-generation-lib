@@ -4,7 +4,6 @@ namespace Tests;
 
 use PHPUnit\Framework\TestCase;
 use Src\Builders\XmlFileDataBuilder;
-use Src\Exceptions\BadPathFileDataBuilderException;
 use Src\Main\Page\PageDTO;
 
 class XmlFileDataBuilderTest extends TestCase
@@ -37,36 +36,20 @@ class XmlFileDataBuilderTest extends TestCase
         ]);
     }
 
-    // public function testSavingXmlFileDataBuilder(): void
-    // {
-    //     $this->builder
-    //         ->init([
-    //             'xmlns:xsi' => 'http://www.w3.org/2001/XMLSchema-instance',
-    //             'xmlns' => 'http://www.sitemaps.org/schemas/sitemap/0.9'
-    //         ])
-    //         ->appendPageDTO($this->pageDataOne)
-    //         ->appendPageDTO($this->pageDataTwo)
-    //         ->appendPageDTO($this->pageDataThree);
-
-    //     $this->builder->save("/var/www/site.ru/file.xml");
-    // }
-
     public function testSaving1XmlFileDataBuilder(): void
     {
         $this->builder
             ->init([
                 'xmlns:xsi' => 'http://www.w3.org/2001/XMLSchema-instance',
-                'xmlns' => 'http://www.sitemaps.org/schemas/sitemap/0.9'
+                'xmlns' => 'http://www.sitemaps.org/schemas/sitemap/0.9',
+                'test' => 'https://www.sitetest.test/schemas/sitemap'
             ])
             ->appendPageDTO($this->pageDataOne)
             ->appendPageDTO($this->pageDataTwo)
             ->appendPageDTO($this->pageDataThree);
 
-        try {
-            $this->builder->save("w/??fr/:var/d:/test/run/site.ru");
-        } catch (\Throwable $th) {
-            error_log($th->getMessage(), 3, "errors.log");
-        }
-        
+        $this->assertTrue($this->builder->save("/var/www/site.ru/file.xml"));      
+        $this->assertFalse($this->builder->save("/var/www/site.ru/"));       
+        $this->assertFalse($this->builder->save("w/??fr/:var/d:/test/run/site.ru/file.xml"));        
     }
 }
