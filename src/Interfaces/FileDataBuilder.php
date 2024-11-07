@@ -23,10 +23,10 @@ interface FileDataBuilder
 
     /**
      * Сохранение построенного содержимого в файл
-     * @param string $path путь сохранения
+     * @param string $filename путь сохранения
      * @return bool успешность операции
      */
-    public function save(string $path): bool;
+    public function save(string $filename): bool;
 
     /**
      * Очистка содержимого

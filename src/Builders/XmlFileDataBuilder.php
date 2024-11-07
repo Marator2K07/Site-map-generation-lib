@@ -38,26 +38,16 @@ class XmlFileDataBuilder implements FileDataBuilder
         return $this;
     }
 
-    public function save(string $path = 'file.xml'): bool
+    public function save(string $filename = 'file.xml'): bool
     {
-        // пытаемся получить доступ к папке (и создать, если нужно)
-        $directory = dirname($path);
-        if (!is_dir($directory)) {
-            if (!mkdir($directory, 0755, true)) {
-                throw new BadPathFileDataBuilderException(
-                    'Некорректное значение пути сохранения ['
-                        . ($path ? $path : "null")
-                        . '] при инициализации страницы.'
-                );
-            }
+        // пытаемся получить доступ к папке (создать, если нужно)
+        $directory = dirname($filename);
+        if (!is_dir($directory) && !mkdir($directory, 0755, true)) {
+            return false;        
         }
-
-        if (!$this->xmlData->asXML($path)) {
-            throw new BadPathFileDataBuilderException(
-                'Некорректное значение пути сохранения ['
-                    . ($path ? $path : "null")
-                    . '] при инициализации страницы.'
-            );
+        // и наконец, сохранить 
+        if (!$this->xmlData->saveXML($filename)) {
+            return false;
         }
 
         return true;
