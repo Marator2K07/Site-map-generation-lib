@@ -6,5 +6,10 @@
         "psr-4": {
             "Src\\": "src/"
         }
+    },
+    "name": "marator2k07/site-map-generation-lib",
+    "description": "Library for generating sitemaps in XML, CSV, and JSON formats.",
+    "require": {
+        "php": ">=8.2"
     }
 }
