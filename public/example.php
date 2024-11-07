@@ -6,16 +6,22 @@ use Src\Main\SiteMapGenerator;
 //< Укажите страницы [поля: loc, lastmod, priority, changefreq]
 $pages = [
     [
-        'loc' => 'http://example.com/page1',
+        'loc' => 'http://site.ru',
         'lastmod' => '2024-01-01',
         'priority' => 0.8,
         'changefreq' => 'daily'        
     ],
     [
-        'loc' => 'http://example.com/page2',
+        'loc' => 'http://example.ru/site/news',
         'lastmod' => '2022-01-02',        
-        'priority' => 0.5,
+        'priority' => 0.77,
         'changefreq' => 'weekly'
+    ],
+    [
+        'loc' => 'http://example.com/page2',
+        'lastmod' => '2012-12-12',        
+        'priority' => 0.2,
+        'changefreq' => 'hourly'
     ]
 ];
 //>

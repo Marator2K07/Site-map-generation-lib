@@ -14,7 +14,7 @@ class JsonFileDataBuilder implements FileDataBuilder
         $this->data = [];
     }
 
-    public function init(array $attributes): FileDataBuilder
+    public function init(array $attributes = []): FileDataBuilder
     {
         $this->data['attributes'] = $attributes;
         $this->data['values'] = []; 
@@ -31,7 +31,7 @@ class JsonFileDataBuilder implements FileDataBuilder
 
     public function save(string $filename): bool
     {
-        // Пытаемся получить доступ к папке (создать, если нужно)
+        // пытаемся получить доступ к папке (создать, если нужно)
         $directory = dirname($filename);
         if (!is_dir($directory) && !mkdir($directory, 0755, true)) {
             return false;        

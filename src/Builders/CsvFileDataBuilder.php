@@ -16,7 +16,7 @@ class CsvFileDataBuilder implements FileDataBuilder
         $this->data = [];
     }
 
-    public function init(array $attributes): FileDataBuilder
+    public function init(array $attributes = []): FileDataBuilder
     {
         $this->headers = $attributes;
 
@@ -32,17 +32,17 @@ class CsvFileDataBuilder implements FileDataBuilder
 
     public function save(string $filename): bool
     {
-        // Пытаемся получить доступ к папке (создать, если нужно)
+        // пытаемся получить доступ к папке (создать, если нужно)
         $directory = dirname($filename);
         if (!is_dir($directory) && !mkdir($directory, 0755, true)) {
             return false;        
         }
-        // И открыть файл для записи
+        // и открыть файл для записи
         $file = fopen($filename, 'w');
         if (!$file) {
             return false;
         }
-        // Пишем заголовки и данные
+        // пишем заголовки и данные
         fputcsv($file, $this->headers, ';');
         foreach ($this->data as $row) {
             fputcsv($file, $row, ';');
@@ -54,7 +54,7 @@ class CsvFileDataBuilder implements FileDataBuilder
 
     public function clear(): void
     {
-        $this->data = [];
         $this->headers = [];
+        $this->data = [];        
     }
 }

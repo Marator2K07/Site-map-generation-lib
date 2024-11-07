@@ -23,10 +23,10 @@ class UpdateFrequencyValidator implements Validator
         ] 
     ): bool
     {
-        if (in_array($value, $pattern)) {
-            return true;
-        } else {
+        if (!in_array($value, $pattern)) {
             return false;
-        }
+        } 
+
+        return true;
     }
 }

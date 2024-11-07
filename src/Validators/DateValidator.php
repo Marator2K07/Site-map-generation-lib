@@ -23,6 +23,7 @@ class DateValidator implements Validator
         }
         // а теперь проверяем границы даты
         [$year, $month, $day] = explode('-', $value);
+        
         return checkdate($month, $day, $year);
     }
 }

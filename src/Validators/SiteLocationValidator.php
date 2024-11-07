@@ -17,11 +17,11 @@ class SiteLocationValidator implements Validator
         mixed $pattern = '/^https?:\/\/[a-zA-Z0-9\-\.]+\.[a-z]{2,}(\/[a-zA-Z0-9\-\/]*)?\/?$/'        
     ): bool
     {
-        if (preg_match($pattern, $value)) {
-            return true;
-        } else {
+        if (!preg_match($pattern, $value)) {
             return false;
-        }
+        } 
+
+        return true;
     }
 }
  

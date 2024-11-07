@@ -31,7 +31,7 @@ class PageDTO
     {
         return $this->loc;
     }
-    public function setLoc(mixed $loc)
+    public function setLoc(mixed $loc): void
     {
         if ($loc === null || !SiteLocationValidator::validate($loc)) {
             throw new InvalidPageDTOException(

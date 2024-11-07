@@ -15,18 +15,26 @@ class SiteMapGenerator
 
     public function __construct(
         array $pages,
-        string $fileType         
+        string $fileType
     ) {
         // инициализируем конструктор данных файла
         switch ($fileType) {
             case 'xml':
                 $this->fileDataBuilder = new XmlFileDataBuilder();
+                // изначально неизвестно какими данными заполнять атрибуты xml 
+                // так что пусть будет так
+                $this->fileDataBuilder->init([
+                    'xmlns' => "http://www.sitemaps.org/schemas/sitemap/0.9",
+                    'xsi:schemaLocation' => "http://www.sitemaps.org/schemas/sitemap/0.9"
+                ]);
                 break;
             case 'csv':
                 $this->fileDataBuilder = new CsvFileDataBuilder();
+                $this->fileDataBuilder->init(['loc', 'lastmod', 'priority', 'changefreq']); 
                 break;
             case 'json':
                 $this->fileDataBuilder = new JsonFileDataBuilder();
+                $this->fileDataBuilder->init(['loc', 'lastmod', 'priority', 'changefreq']); 
                 break;            
             default:
                 throw new InvalidFileTypeException(
@@ -48,11 +56,8 @@ class SiteMapGenerator
      * @return void
      */
     public function generate(string $fileName): void
-    {    
-        // "строим" содержимое файла    
-        $this->fileDataBuilder->init([
-            'loc', 'lastmod', 'priority', 'changefreq' 
-        ]);
+    {
+        // "строим" содержимое файла 
         foreach ($this->pagesDTO as $pageDTO) {
             $this->fileDataBuilder->appendPageDTO($pageDTO);
         }

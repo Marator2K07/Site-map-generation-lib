@@ -15,9 +15,9 @@ class XmlFileDataBuilder implements FileDataBuilder
         $this->data = new SimpleXMLElement('<urlset/>');
     }
 
-    public function init(array $attributes): FileDataBuilder
+    public function init(array $attributes = []): FileDataBuilder
     {
-        // Добавляем все полученные атрибуты  
+        // добавляем все полученные атрибуты  
         foreach ($attributes as $key => $value) {
             $this->data->addAttribute($key, $value);
         }
