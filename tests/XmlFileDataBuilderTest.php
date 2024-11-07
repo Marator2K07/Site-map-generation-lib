@@ -48,8 +48,8 @@ class XmlFileDataBuilderTest extends TestCase
             ->appendPageDTO($this->pageDataTwo)
             ->appendPageDTO($this->pageDataThree);
 
-        $this->assertTrue($this->builder->save("/var/www/site.ru/file.xml"));      
-        $this->assertFalse($this->builder->save("/var/www/site.ru/"));       
-        $this->assertFalse($this->builder->save("w/??fr/:var/d:/test/run/site.ru/file.xml"));        
+        $this->assertTrue($this->builder->save("/var/www/site.ru/file.xml"));
+        $this->assertFalse($this->builder->save("/var/www/site.ru/"));
+        $this->assertFalse($this->builder->save("w/??fr/:var/d:/test/run/site.ru/file.xml"));
     }
 }

@@ -44,8 +44,8 @@ class CsvFileDataBuilderTest extends TestCase
             ->appendPageDTO($this->pageDataTwo)
             ->appendPageDTO($this->pageDataThree);
 
-        $this->assertTrue($this->builder->save("/var/www/site.ru/file.csv"));      
-        $this->assertFalse($this->builder->save("/var/www/site.ru/"));       
-        $this->assertFalse($this->builder->save("w/??fr/:var/d:/test/run/site.ru/file.csv"));        
+        $this->assertTrue($this->builder->save("/var/www/site.ru/file.csv"));
+        $this->assertFalse($this->builder->save("/var/www/site.ru/"));
+        $this->assertFalse($this->builder->save("w/??fr/:var/d:/test/run/site.ru/file.csv"));
     }
 }

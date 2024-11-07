@@ -4,7 +4,7 @@ namespace Src\Interfaces;
 
 use Src\Main\PageDTO;
 
-interface FileDataBuilder 
+interface FileDataBuilder
 {
     /**
      * Начальная инициализация данных в зависимости от
@@ -12,8 +12,8 @@ interface FileDataBuilder
      * @param array $attributes возможные атрибуты определения данных 
      * @return FileDataBuilder возврат для поддержания цепочки вызовов
      */
-    public function init(array $attributes): FileDataBuilder; 
-  
+    public function init(array $attributes): FileDataBuilder;
+
     /**
      * Добавление данных из страницы
      * @param PageDTO $pageDTO данные страницы для добавления

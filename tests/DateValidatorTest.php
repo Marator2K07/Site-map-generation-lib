@@ -18,9 +18,9 @@ class DateValidatorTest extends TestCase
             "2007-07-07"
         ];
         $this->badDates = [
-            "2021-02-30", 
-            "2020-13-01", 
-            "2021-04-31" 
+            "2021-02-30",
+            "2020-13-01",
+            "2021-04-31"
         ];
     }
 
@@ -29,6 +29,7 @@ class DateValidatorTest extends TestCase
         foreach ($this->goodDates as $date) {
             $this->assertTrue(DateValidator::validate($date));
         }
+
         foreach ($this->badDates as $date) {
             $this->assertFalse(DateValidator::validate($date));
         }

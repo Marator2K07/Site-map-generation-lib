@@ -32,6 +32,7 @@ class SiteLocationValidatorTest extends TestCase
         foreach ($this->goodUrls as $url) {
             $this->assertTrue(SiteLocationValidator::validate($url));
         }
+
         foreach ($this->badUrls as $url) {
             $this->assertFalse(SiteLocationValidator::validate($url));
         }

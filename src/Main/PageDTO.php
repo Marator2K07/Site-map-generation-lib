@@ -8,7 +8,7 @@ use Src\Validators\DateValidator;
 use Src\Validators\SiteLocationValidator;
 use Src\Validators\UpdateFrequencyValidator;
 
-class PageDTO 
+class PageDTO
 {
     // адрес страницы
     private string $loc;
@@ -35,9 +35,10 @@ class PageDTO
     {
         if ($loc === null || !SiteLocationValidator::validate($loc)) {
             throw new InvalidPageDTOException(
-                'Некорректное значение адреса страницы [' 
-                . ($loc ? $loc : "null") 
-                . '] при инициализации страницы.', 3
+                'Некорректное значение адреса страницы ['
+                    . ($loc ? $loc : "null")
+                    . '] при инициализации страницы.',
+                3
             );
         }
 
@@ -52,11 +53,11 @@ class PageDTO
     {
         if ($lastMod === null || !DateValidator::validate($lastMod)) {
             throw new InvalidPageDTOException(
-                'Некорректное значение даты последней модификации [' 
-                . ($lastMod ? $lastMod : "null")
-                . '] при инициализации страницы.'
+                'Некорректное значение даты последней модификации ['
+                    . ($lastMod ? $lastMod : "null")
+                    . '] при инициализации страницы.'
             );
-        }        
+        }
 
         $this->lastMod = new DateTime($lastMod);
     }
@@ -70,8 +71,8 @@ class PageDTO
         if ($priority === null || !is_numeric($priority)) {
             throw new InvalidPageDTOException(
                 'Некорректное значение приоритета парсинга ['
-                . ($priority ? $priority : "null")
-                . '] при инициализации страницы.'
+                    . ($priority ? $priority : "null")
+                    . '] при инициализации страницы.'
             );
         }
 
@@ -86,14 +87,14 @@ class PageDTO
     {
         if ($changeFreq === null || !UpdateFrequencyValidator::validate($changeFreq)) {
             throw new InvalidPageDTOException(
-                'Некорректное значение частоты обновления [' 
-                . ($changeFreq ? $changeFreq : "null") 
-                . '] при инициализации страницы.'
+                'Некорректное значение частоты обновления ['
+                    . ($changeFreq ? $changeFreq : "null")
+                    . '] при инициализации страницы.'
             );
         }
 
         $this->changeFreq = $changeFreq;
-    } 
+    }
 
     public function getProperties(): array
     {
@@ -103,10 +104,10 @@ class PageDTO
     public function getData(): array
     {
         return [
-           'loc' => $this->getLoc(),
-           'lastmod' => $this->getLastMod('Y-m-d'),
-           'priority' => $this->getPriority(),
-           'changefreq' => $this->getChangeFreq()
+            'loc' => $this->getLoc(),
+            'lastmod' => $this->getLastMod('Y-m-d'),
+            'priority' => $this->getPriority(),
+            'changefreq' => $this->getChangeFreq()
         ];
     }
 }

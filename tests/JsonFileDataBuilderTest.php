@@ -44,8 +44,8 @@ class JsonFileDataBuilderTest extends TestCase
             ->appendPageDTO($this->pageDataTwo)
             ->appendPageDTO($this->pageDataThree);
 
-        $this->assertTrue($this->builder->save("/var/www/site.ru/file.json"));      
-        $this->assertFalse($this->builder->save("/var/www/site.ru/"));       
-        $this->assertFalse($this->builder->save("w/??fr/:var/d:/test/run/site.ru/file.json"));        
+        $this->assertTrue($this->builder->save("/var/www/site.ru/file.json"));
+        $this->assertFalse($this->builder->save("/var/www/site.ru/"));
+        $this->assertFalse($this->builder->save("w/??fr/:var/d:/test/run/site.ru/file.json"));
     }
 }

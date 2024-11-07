@@ -14,16 +14,15 @@ class DateValidator implements Validator
      */
     public static function validate(
         mixed $value,
-        mixed $pattern = '/^\d{4}-\d{2}-\d{2}$/'        
-    ): bool
-    {
+        mixed $pattern = '/^\d{4}-\d{2}-\d{2}$/'
+    ): bool {
         // сначала проверяем дату через регулярное выражение
         if (!preg_match($pattern, $value)) {
             return false;
         }
         // а теперь проверяем границы даты
         [$year, $month, $day] = explode('-', $value);
-        
+
         return checkdate($month, $day, $year);
     }
 }

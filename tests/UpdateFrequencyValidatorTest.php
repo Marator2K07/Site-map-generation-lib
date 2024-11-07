@@ -10,7 +10,7 @@ class UpdateFrequencyValidatorTest extends TestCase
     private $goodFrequencies;
     private $badFrequencies;
 
-    public function setUp(): void 
+    public function setUp(): void
     {
         $this->goodFrequencies = [
             "hourly",
@@ -32,6 +32,7 @@ class UpdateFrequencyValidatorTest extends TestCase
         foreach ($this->goodFrequencies as $freq) {
             $this->assertTrue(UpdateFrequencyValidator::validate($freq));
         }
+
         foreach ($this->badFrequencies as $freq) {
             $this->assertFalse(UpdateFrequencyValidator::validate($freq));
         }

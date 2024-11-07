@@ -15,7 +15,7 @@ class PageDTOTest extends TestCase
     private $badPageDataTwo;
     private $badPageDataThree;
     private $badPageDataFour;
-    
+
     public function setUp(): void
     {
         $this->goodPageDataOne = [
@@ -73,38 +73,38 @@ class PageDTOTest extends TestCase
     }
 
     public function testInvalidLocPageDTO(): void
-    {             
-        $this->expectException(InvalidPageDTOException::class);   
+    {
+        $this->expectException(InvalidPageDTOException::class);
         $this->expectExceptionMessage(
             "Некорректное значение адреса страницы [few//site] при инициализации страницы."
         );
-        $pageXmlDTO = new PageDTO($this->badPageDataOne);  
+        $pageXmlDTO = new PageDTO($this->badPageDataOne);
     }
 
     public function testInvalidLastModPageDTO(): void
     {
-        $this->expectException(InvalidPageDTOException::class);   
+        $this->expectException(InvalidPageDTOException::class);
         $this->expectExceptionMessage(
             "Некорректное значение даты последней модификации [2020-13-44] при инициализации страницы."
         );
-        $pageXmlDTO = new PageDTO($this->badPageDataTwo);  
+        $pageXmlDTO = new PageDTO($this->badPageDataTwo);
     }
 
     public function testInvalidPriorityPageDTO(): void
     {
-        $this->expectException(InvalidPageDTOException::class);   
+        $this->expectException(InvalidPageDTOException::class);
         $this->expectExceptionMessage(
             "Некорректное значение приоритета парсинга [abc] при инициализации страницы."
         );
-        $pageXmlDTO = new PageDTO($this->badPageDataThree);  
+        $pageXmlDTO = new PageDTO($this->badPageDataThree);
     }
 
     public function testInvalidChangeFreqPageDTO(): void
     {
-        $this->expectException(InvalidPageDTOException::class);   
+        $this->expectException(InvalidPageDTOException::class);
         $this->expectExceptionMessage(
             "Некорректное значение частоты обновления [random] при инициализации страницы."
         );
-        $pageXmlDTO = new PageDTO($this->badPageDataFour);  
+        $pageXmlDTO = new PageDTO($this->badPageDataFour);
     }
 }

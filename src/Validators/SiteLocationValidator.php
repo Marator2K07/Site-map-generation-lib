@@ -4,8 +4,8 @@ namespace Src\Validators;
 
 use Src\Interfaces\Validator;
 
-class SiteLocationValidator implements Validator 
-{    
+class SiteLocationValidator implements Validator
+{
     /**
      * Проверка корректности адреса страницы 
      * @param mixed $value строка страницы сайта
@@ -14,14 +14,12 @@ class SiteLocationValidator implements Validator
      */
     public static function validate(
         mixed $value,
-        mixed $pattern = '/^https?:\/\/[a-zA-Z0-9\-\.]+\.[a-z]{2,}(\/[a-zA-Z0-9\-\/]*)?\/?$/'        
-    ): bool
-    {
+        mixed $pattern = '/^https?:\/\/[a-zA-Z0-9\-\.]+\.[a-z]{2,}(\/[a-zA-Z0-9\-\/]*)?\/?$/'
+    ): bool {
         if (!preg_match($pattern, $value)) {
             return false;
-        } 
+        }
 
         return true;
     }
 }
- 

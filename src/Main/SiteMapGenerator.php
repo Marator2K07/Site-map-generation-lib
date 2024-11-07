@@ -8,11 +8,11 @@ use Src\Builders\XmlFileDataBuilder;
 use Src\Exceptions\BadPathFileDataBuilderException;
 use Src\Exceptions\InvalidFileTypeException;
 
-class SiteMapGenerator 
+class SiteMapGenerator
 {
     private $pagesDTO;
     private $fileDataBuilder;
-    private $fileName;    
+    private $fileName;
 
     public function __construct(
         array $pages,
@@ -32,26 +32,26 @@ class SiteMapGenerator
                 break;
             case 'csv':
                 $this->fileDataBuilder = new CsvFileDataBuilder();
-                $this->fileDataBuilder->init(['loc', 'lastmod', 'priority', 'changefreq']); 
+                $this->fileDataBuilder->init(['loc', 'lastmod', 'priority', 'changefreq']);
                 break;
             case 'json':
                 $this->fileDataBuilder = new JsonFileDataBuilder();
-                $this->fileDataBuilder->init(['loc', 'lastmod', 'priority', 'changefreq']); 
-                break;            
+                $this->fileDataBuilder->init(['loc', 'lastmod', 'priority', 'changefreq']);
+                break;
             default:
                 throw new InvalidFileTypeException(
-                    'Неподдерживаемый тип файла [' 
-                    . $fileType 
-                    . ']; поддерживаемые [xml, csv, json]'
+                    'Неподдерживаемый тип файла ['
+                        . $fileType
+                        . ']; поддерживаемые [xml, csv, json]'
                 );
         }
         // инициализация пути файла с предпроверкой
         if (!str_contains($fileName, '.' . $fileType)) {
             throw new InvalidFileTypeException(
-                'Некорректный путь до файла [' 
-                . $fileName 
-                . ']; не хватает типа файла .'
-                . $fileType
+                'Некорректный путь до файла ['
+                    . $fileName
+                    . ']; не хватает типа файла .'
+                    . $fileType
             );
         }
         $this->fileName = $fileName;
@@ -73,12 +73,12 @@ class SiteMapGenerator
             $this->fileDataBuilder->appendPageDTO($pageDTO);
         }
         // и пытаемся сохранить
-        if(!$this->fileDataBuilder->save($this->fileName)) {
+        if (!$this->fileDataBuilder->save($this->fileName)) {
             throw new BadPathFileDataBuilderException(
-                'Не удалось сохранить карту страниц по указанному пути [' 
-                . $this->fileName 
-                . ']'
+                'Не удалось сохранить карту страниц по указанному пути ['
+                    . $this->fileName
+                    . ']'
             );
-        }  
+        }
     }
 }

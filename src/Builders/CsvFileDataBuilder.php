@@ -8,8 +8,8 @@ use Src\Main\PageDTO;
 class CsvFileDataBuilder implements FileDataBuilder
 {
     private $headers;
-    private $data;   
-    
+    private $data;
+
     public function __construct()
     {
         $this->headers = [];
@@ -26,7 +26,7 @@ class CsvFileDataBuilder implements FileDataBuilder
     public function appendPageDTO(PageDTO $pageDTO): FileDataBuilder
     {
         $this->data[] = $pageDTO->getData();
-        
+
         return $this;
     }
 
@@ -35,7 +35,7 @@ class CsvFileDataBuilder implements FileDataBuilder
         // пытаемся получить доступ к папке (создать, если нужно)
         $directory = dirname($filename);
         if (!is_dir($directory) && !mkdir($directory, 0755, true)) {
-            return false;        
+            return false;
         }
         // и открыть файл для записи
         $file = fopen($filename, 'w');
@@ -55,6 +55,6 @@ class CsvFileDataBuilder implements FileDataBuilder
     public function clear(): void
     {
         $this->headers = [];
-        $this->data = [];        
+        $this->data = [];
     }
 }

@@ -12,7 +12,7 @@ class UpdateFrequencyValidator implements Validator
      * @param mixed $pattern массив фильтрации 
      * @return bool принадлежность массиву фильтрации
      */
-    public static function validate(        
+    public static function validate(
         mixed $value,
         mixed $pattern = [
             "hourly",
@@ -20,12 +20,11 @@ class UpdateFrequencyValidator implements Validator
             "weekly",
             "monthly",
             "annually" // ежегодно
-        ] 
-    ): bool
-    {
+        ]
+    ): bool {
         if (!in_array($value, $pattern)) {
             return false;
-        } 
+        }
 
         return true;
     }
