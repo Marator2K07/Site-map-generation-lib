@@ -93,5 +93,15 @@ class PageDTO
         }
 
         $this->changeFreq = $changeFreq;
+    } 
+
+    public function getData(): array
+    {
+        return [
+           'loc' => $this->getLoc(),
+           'lastmod' => $this->getLastMod('Y-m-d'),
+           'priority' => $this->getPriority(),
+           'changefreq' => $this->getChangeFreq()
+        ];
     }
 }
