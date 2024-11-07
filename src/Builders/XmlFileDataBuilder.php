@@ -3,10 +3,11 @@
 namespace Src\Builders;
 
 use SimpleXMLElement;
+use Src\Exceptions\BadPathFileDataBuilderException;
 use Src\Interfaces\FileDataBuilder;
 use Src\Main\Page\PageDTO;
 
-class XmlFileDataBuilder implements FileDataBuilder 
+class XmlFileDataBuilder implements FileDataBuilder
 {
     private $xmlData;
 
@@ -39,13 +40,27 @@ class XmlFileDataBuilder implements FileDataBuilder
 
     public function save(string $path = 'file.xml'): bool
     {
-        // пытаемся получить доступ к папке (создаем, если нужно)
+        // пытаемся получить доступ к папке (и создать, если нужно)
         $directory = dirname($path);
         if (!is_dir($directory)) {
-            mkdir($directory, 0755, true);
+            if (!mkdir($directory, 0755, true)) {
+                throw new BadPathFileDataBuilderException(
+                    'Некорректное значение пути сохранения ['
+                        . ($path ? $path : "null")
+                        . '] при инициализации страницы.'
+                );
+            }
         }
 
-        return $this->xmlData->saveXML($path);
+        if (!$this->xmlData->asXML($path)) {
+            throw new BadPathFileDataBuilderException(
+                'Некорректное значение пути сохранения ['
+                    . ($path ? $path : "null")
+                    . '] при инициализации страницы.'
+            );
+        }
+
+        return true;
     }
 
     public function clear(): void

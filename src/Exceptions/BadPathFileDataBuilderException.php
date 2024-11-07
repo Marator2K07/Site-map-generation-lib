@@ -5,7 +5,7 @@ namespace Src\Exceptions;
 use Exception;
 use Throwable;
 
-class InvalidPageDTOException extends Exception
+class BadPathFileDataBuilderException extends Exception
 {
     public function __construct(
         $message = "",
