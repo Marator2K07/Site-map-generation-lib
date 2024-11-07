@@ -4,7 +4,7 @@ namespace Tests;
 
 use PHPUnit\Framework\TestCase;
 use Src\Builders\XmlFileDataBuilder;
-use Src\Main\Page\PageDTO;
+use Src\Main\PageDTO;
 
 class XmlFileDataBuilderTest extends TestCase
 {

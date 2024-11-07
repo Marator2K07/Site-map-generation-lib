@@ -4,7 +4,7 @@ namespace Tests;
 
 use PHPUnit\Framework\TestCase;
 use Src\Exceptions\InvalidPageDTOException;
-use Src\Main\Page\PageDTO;
+use Src\Main\PageDTO;
 use function PHPUnit\Framework\assertSame;
 
 class PageDTOTest extends TestCase

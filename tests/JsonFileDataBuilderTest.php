@@ -4,7 +4,7 @@ namespace Tests;
 
 use PHPUnit\Framework\TestCase;
 use Src\Builders\JsonFileDataBuilder;
-use Src\Main\Page\PageDTO;
+use Src\Main\PageDTO;
 
 class JsonFileDataBuilderTest extends TestCase
 {

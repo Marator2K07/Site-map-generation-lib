@@ -4,7 +4,7 @@ namespace Tests;
 
 use PHPUnit\Framework\TestCase;
 use Src\Builders\CsvFileDataBuilder;
-use Src\Main\Page\PageDTO;
+use Src\Main\PageDTO;
 
 class CsvFileDataBuilderTest extends TestCase
 {

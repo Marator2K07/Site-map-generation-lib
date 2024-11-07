@@ -1,6 +1,6 @@
 <?php
 
-namespace Src\Main\Page;
+namespace Src\Main;
 
 use DateTime;
 use Src\Exceptions\InvalidPageDTOException;

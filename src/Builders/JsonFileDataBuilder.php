@@ -3,7 +3,7 @@
 namespace Src\Builders;
 
 use Src\Interfaces\FileDataBuilder;
-use Src\Main\Page\PageDTO;
+use Src\Main\PageDTO;
 
 class JsonFileDataBuilder implements FileDataBuilder
 {

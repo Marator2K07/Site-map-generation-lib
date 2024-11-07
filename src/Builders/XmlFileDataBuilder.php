@@ -4,7 +4,7 @@ namespace Src\Builders;
 
 use SimpleXMLElement;
 use Src\Interfaces\FileDataBuilder;
-use Src\Main\Page\PageDTO;
+use Src\Main\PageDTO;
 
 class XmlFileDataBuilder implements FileDataBuilder
 {

@@ -2,7 +2,7 @@
 
 namespace Src\Interfaces;
 
-use Src\Main\Page\PageDTO;
+use Src\Main\PageDTO;
 
 interface FileDataBuilder 
 {
