@@ -6,6 +6,7 @@ use Src\Builders\CsvFileDataBuilder;
 use Src\Builders\JsonFileDataBuilder;
 use Src\Builders\XmlFileDataBuilder;
 use Src\Exceptions\BadPathFileDataBuilderException;
+use Src\Exceptions\InvalidFileTypeException;
 
 class SiteMapGenerator 
 {
@@ -26,11 +27,13 @@ class SiteMapGenerator
                 break;
             case 'json':
                 $this->fileDataBuilder = new JsonFileDataBuilder();
-                break;
-            
+                break;            
             default:
-                # code...
-                break;
+                throw new InvalidFileTypeException(
+                    'Неподдерживаемый тип файла [' 
+                    . $fileType 
+                    . ']; поддерживаемые [xml, csv, json]'
+                );
         }
         // инициализация страниц 
         foreach ($pages as $page) {
