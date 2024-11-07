@@ -13,15 +13,7 @@ interface FileDataBuilder
      * @return FileDataBuilder возврат для поддержания цепочки вызовов
      */
     public function init(array $attributes): FileDataBuilder; 
-
-    /**
-     * Добавление отдельного компонента или ребенка
-     * @param string $key ключ для значения
-     * @param string $value значение для добавления
-     * @return FileDataBuilder возврат для поддержания цепочки вызовов
-     */
-    public function append(string $key, string $value): FileDataBuilder;
-
+  
     /**
      * Добавление данных из страницы
      * @param PageDTO $pageDTO данные для добавления
