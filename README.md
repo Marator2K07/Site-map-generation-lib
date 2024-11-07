@@ -1,7 +1,19 @@
 # Site-map-generation-lib
 Библиотека генерации карты сайта 
 # Установка 
-    composer require marator2k07/site-map-generation-lib
+1) Примерная конфигурация для composer.json
+
+        "autoload": {
+            "psr-4": {
+                "Src\\": "src/"
+            }
+        },
+        "require": {
+            "php": ">=8.2"
+        }
+2) Загрузка библиотеки
+
+        composer require marator2k07/site-map-generation-lib
 # Пример использования
     <?php
     
