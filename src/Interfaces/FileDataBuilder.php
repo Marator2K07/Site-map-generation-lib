@@ -16,16 +16,17 @@ interface FileDataBuilder
   
     /**
      * Добавление данных из страницы
-     * @param PageDTO $pageDTO данные для добавления
+     * @param PageDTO $pageDTO данные страницы для добавления
      * @return FileDataBuilder возврат для поддержания цепочки вызовов
      */
     public function appendPageDTO(PageDTO $pageDTO): FileDataBuilder;
 
     /**
      * Сохранение построенного содержимого в файл
-     * @return string итоговая строка
+     * @param string $path путь сохранения
+     * @return bool успешность операции
      */
-    public function save(string $path): void;
+    public function save(string $path): bool;
 
     /**
      * Очистка содержимого
