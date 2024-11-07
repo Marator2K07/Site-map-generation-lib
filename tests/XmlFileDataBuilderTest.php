@@ -36,7 +36,7 @@ class XmlFileDataBuilderTest extends TestCase
         ]);
     }
 
-    public function testSaving1XmlFileDataBuilder(): void
+    public function testSaveXmlFileDataBuilder(): void
     {
         $this->builder
             ->init([
