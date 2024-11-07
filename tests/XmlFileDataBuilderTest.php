@@ -1,0 +1,46 @@
+<?php
+
+namespace Tests;
+
+use PHPUnit\Framework\TestCase;
+use Src\Builders\XmlFileDataBuilder;
+use Src\Main\Page\PageDTO;
+
+class XmlFileDataBuilderTest extends TestCase
+{
+    private XmlFileDataBuilder $builder;
+    private PageDTO $pageDataOne;
+    private PageDTO $pageDataTwo;
+
+    public function setUp(): void
+    {
+        $this->builder = new XmlFileDataBuilder();
+        $this->pageDataOne = new PageDTO([
+            "loc" => "https://site.ru",
+            "lastmod" => "2020-10-12",
+            "priority" => 0.1,
+            "changefreq" => "daily"
+        ]);
+        $this->pageDataTwo = new PageDTO([
+            "loc" => "https://site.ru/news",
+            "lastmod" => "2017-05-03",
+            "priority" => 0.4,
+            "changefreq" => "weekly"
+        ]);
+    }
+
+    public function testValidXmlFileDataBuilder(): void
+    {
+        $this->builder
+            ->init([
+                'xmlns:xsi' => 'http://www.w3.org/2001/XMLSchema-instance',
+                'xmlns' => 'http://www.sitemaps.org/schemas/sitemap/0.9'
+            ])
+            ->appendPageDTO($this->pageDataOne)
+            ->appendPageDTO($this->pageDataTwo);
+
+            if (!$this->builder->save()) {
+                error_log("Не смогло сохранить", 3, "errors.log");
+            }
+    }
+}
