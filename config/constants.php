@@ -1,0 +1,3 @@
+<?php
+
+define('DEFAULT_PERMISSION_LEVEL', 0755);

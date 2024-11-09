@@ -34,7 +34,7 @@ class CsvFileDataBuilder implements FileDataBuilder
     {
         // пытаемся получить доступ к папке (создать, если нужно)
         $directory = dirname($filename);
-        if (!is_dir($directory) && !mkdir($directory, 0755, true)) {
+        if (!is_dir($directory) && !mkdir($directory, DEFAULT_PERMISSION_LEVEL, true)) {
             return false;
         }
         // и открыть файл для записи

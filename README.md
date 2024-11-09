@@ -23,6 +23,7 @@
 # Пример использования
     <?php
         
+    require 'config/constants.php';
     require 'vendor/autoload.php';
     
     use Src\Main\SiteMapGenerator;
@@ -68,6 +69,6 @@
 
     sudo chmod 755 /your_directory_path
 
-Или худшем случае командой:
+Или в худшем случае командой:
 
     sudo chmod 777 /your_directory_path

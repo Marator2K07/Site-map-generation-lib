@@ -1,10 +1,11 @@
 <?php
 
+require 'config/constants.php';
 require 'vendor/autoload.php';
 
 use Src\Main\SiteMapGenerator;
 
-//< Укажите страницы [поля: loc, lastmod, priority, changefreq]
+// Укажите страницы [поля: loc, lastmod, priority, changefreq]
 $pages = [
     [
         'loc' => 'http://site.ru',
@@ -25,15 +26,12 @@ $pages = [
         'changefreq' => 'hourly'
     ]
 ];
-//>
 
-//< Укажите путь к файлу
+// Укажите путь к файлу
 $filePath = '/path/to/your/sitemap.xml';
-//>
 
-//< Укажите тип файла (xml, csv, json)
+// Укажите тип файла (xml, csv, json)
 $fileType = 'xml';
-//>
 
 try {
     $siteMapGenerator = new SiteMapGenerator($pages, $fileType, $filePath);
