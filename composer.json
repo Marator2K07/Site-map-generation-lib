@@ -11,5 +11,13 @@
     "description": "Library for generating sitemaps in XML, CSV, and JSON formats.",
     "require": {
         "php": ">=8.2"
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "php scripts/create_config.php"
+        ],
+        "post-update-cmd": [
+            "php scripts/create_config.php"
+        ]
     }
 }
