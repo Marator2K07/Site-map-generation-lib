@@ -61,3 +61,13 @@
     } catch (\Throwable $th) {
         error_log($th->getMessage() . PHP_EOL, 3, "errors.log");
     }
+
+# Пример использования
+
+На линукс системах, скорее всего, для корректной работы понадобиться установить права доступа для вашей директории командой:
+
+    sudo chmod 755 /your_directory_path
+
+Или худшем случае командой:
+
+    sudo chmod 777 /your_directory_path
