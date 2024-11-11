@@ -7,7 +7,8 @@
             "minimum-stability": "dev",
             "autoload": {
                 "psr-4": {
-                    "Src\\": "src/"                
+                    "Src\\": "src/" 
+                }
             },
             "require": {
                 "php": ">=8.2",
