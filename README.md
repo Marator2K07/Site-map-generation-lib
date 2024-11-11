@@ -3,17 +3,11 @@
 # Установка 
 1) Конфигурируем composer.json:
 
-    {
-        "minimum-stability": "dev",
-        "autoload": {
-            "psr-4": {
-                "Src\\": "src/"
         {
             "minimum-stability": "dev",
             "autoload": {
                 "psr-4": {
-                    "Src\\": "src/"
-                }
+                    "Src\\": "src/"                
             },
             "require": {
                 "php": ">=8.2",
@@ -27,20 +21,7 @@
                     "@php -r \"if (!is_dir('config')) { mkdir('config'); } file_put_contents('config/constants.php', '<?php \n\ndefine(\\'DEFAULT_PERMISSION_LEVEL\\', 0755);');\""
                 ]
             }
-        },
-        "require": {
-            "php": ">=8.2",
-            "marator2k07/site-map-generation-lib": "dev-main"
-        },
-        "scripts": {
-            "post-install-cmd": [
-                "@php -r \"if (!is_dir('config')) { mkdir('config'); } file_put_contents('config/constants.php', '<?php \n\ndefine(\\'DEFAULT_PERMISSION_LEVEL\\', 0755);');\""
-            ],
-            "post-update-cmd": [
-                "@php -r \"if (!is_dir('config')) { mkdir('config'); } file_put_contents('config/constants.php', '<?php \n\ndefine(\\'DEFAULT_PERMISSION_LEVEL\\', 0755);');\""
-            ]
         }
-    }
 
 2) Обновляем зависимости:
 
