@@ -3,6 +3,11 @@
 # Установка 
 1) Конфигурируем composer.json:
 
+    {
+        "minimum-stability": "dev",
+        "autoload": {
+            "psr-4": {
+                "Src\\": "src/"
         {
             "minimum-stability": "dev",
             "autoload": {
@@ -13,8 +18,29 @@
             "require": {
                 "php": ">=8.2",
                 "marator2k07/site-map-generation-lib": "dev-main"
+            },
+            "scripts": {
+                "post-install-cmd": [
+                    "@php -r \"if (!is_dir('config')) { mkdir('config'); } file_put_contents('config/constants.php', '<?php \n\ndefine(\\'DEFAULT_PERMISSION_LEVEL\\', 0755);');\""
+                ],
+                "post-update-cmd": [
+                    "@php -r \"if (!is_dir('config')) { mkdir('config'); } file_put_contents('config/constants.php', '<?php \n\ndefine(\\'DEFAULT_PERMISSION_LEVEL\\', 0755);');\""
+                ]
             }
+        },
+        "require": {
+            "php": ">=8.2",
+            "marator2k07/site-map-generation-lib": "dev-main"
+        },
+        "scripts": {
+            "post-install-cmd": [
+                "@php -r \"if (!is_dir('config')) { mkdir('config'); } file_put_contents('config/constants.php', '<?php \n\ndefine(\\'DEFAULT_PERMISSION_LEVEL\\', 0755);');\""
+            ],
+            "post-update-cmd": [
+                "@php -r \"if (!is_dir('config')) { mkdir('config'); } file_put_contents('config/constants.php', '<?php \n\ndefine(\\'DEFAULT_PERMISSION_LEVEL\\', 0755);');\""
+            ]
         }
+    }
 
 2) Обновляем зависимости:
 
@@ -23,6 +49,7 @@
 # Пример использования
     <?php
         
+    require 'config/constants.php';
     require 'vendor/autoload.php';
     
     use Src\Main\SiteMapGenerator;
@@ -63,3 +90,13 @@
     } catch (\Throwable $th) {
         error_log($th->getMessage() . PHP_EOL, 3, "errors.log");
     }
+
+# Примечания
+
+На линукс системах, скорее всего, для корректной работы понадобиться установить права доступа для вашей директории командой:
+
+    sudo chmod 755 /your_directory_path
+
+Или в худшем случае командой:
+
+    sudo chmod 777 /your_directory_path

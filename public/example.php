@@ -1,5 +1,6 @@
 <?php
 
+require 'config/constants.php';
 require 'vendor/autoload.php';
 
 use Src\Main\SiteMapGenerator;
